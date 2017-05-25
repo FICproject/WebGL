@@ -39,6 +39,7 @@ var clock = new THREE.Clock();
 var cube;
 var z=0;
 var y=-300;
+var t=100;
 init();
 animate();
 // FUNCTIONS 		
@@ -126,29 +127,29 @@ function update()
 {
 	if ( keyboard.pressed("d") ) 
 	{ 
-	z=z+10;
+	z=z+20;
 	sphere.position.set(z,y,t);
 	}
 	if(keyboard.pressed("a")) {
-	z=z-10;
+	z=z-20;
 	sphere.position.set(z,y,t);
 	}
 	if ( keyboard.pressed("e") ) 
 	{ 
-	y=y+10;
+	y=y+20;
 	sphere.position.set(z,y,t);
 	}
 	if(keyboard.pressed("q")) {
-	y=y-10;
+	y=y-20;
 	sphere.position.set(z,y,t);
 	}
 	if ( keyboard.pressed("s") ) 
 	{ 
-	t=t+10;
+	t=t+20;
 	sphere.position.set(z,y,t);
 	}
 	if(keyboard.pressed("w")) {
-	t=t-10;
+	t=t-20;
 	sphere.position.set(z,y,t);
 	}
 	controls.update();
