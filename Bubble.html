@@ -80,28 +80,6 @@ function init()
 	light.position.set(0,250,0);
 	scene.add(light);
 	
-	/*
-	// SPOTLIGHTS & shadow off
-	//renderer.shadowMap.enabled = true;
-	//renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-	spotLight = new THREE.SpotLight( 0xffffff, 1 );
-	spotLight.position.set( 15, 40, 35 );
-	spotLight.castShadow = true;
-	spotLight.angle = Math.PI / 4;
-	spotLight.penumbra = 0.05;
-	spotLight.decay = 2;
-	spotLight.distance = 200;
-	spotLight.shadow.mapSize.width = 1024;
-	spotLight.shadow.mapSize.height = 1024;
-	spotLight.shadow.camera.near = 1;
-	spotLight.shadow.camera.far = 200;
-	
-	lightHelper = new THREE.SpotLightHelper( spotLight );
-	
-	scene.add( spotLight );
-	scene.add( new THREE.AxisHelper( 10 ) );
-	scene.add( lightHelper );
-	*/
 	
 	// FLOOR
 	var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
