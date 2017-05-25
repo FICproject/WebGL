@@ -30,16 +30,20 @@
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
+
 // MAIN
+
 // standard global variables
 var container, scene, camera, renderer, controls, stats;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
 // custom global variables
 var cube;
-var z=400;
+var z=0;
+var y=300;
 init();
 animate();
+
 // FUNCTIONS 		
 function init() 
 {
@@ -135,6 +139,7 @@ function init()
 	
 	this.refractSphereCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
 	scene.add( refractSphereCamera );
+
 	var fShader = THREE.FresnelShader;
 	
 	var fresnelUniforms = 
@@ -154,10 +159,6 @@ function init()
 		fragmentShader: fShader.fragmentShader
 	}   );
 	
-	var sphereGeometry = new THREE.SphereGeometry( 100, 64, 32 );
-	this.sphere = new THREE.Mesh( sphereGeometry, customMaterial );
-	sphere.position.set(200,50,100);
-	scene.add(sphere);
 	
 	var geo = new THREE.CylinderGeometry( 50, 200 , 200 , 1000 );
 	var mat = new THREE.MeshBasicMaterial({color: 0x00000f});
@@ -165,9 +166,9 @@ function init()
 	cylinder.position.set(0,50,100);
 	scene.add(cylinder);
 	
-	var sphereGeometry2 = new THREE.SphereGeometry( 100, 64, 32 );
+	var sphereGeometry = new THREE.SphereGeometry( 100, 64, 32 );
 	this.sphere = new THREE.Mesh( sphereGeometry, customMaterial );
-	sphere.position.set(z,50,100);
+	sphere.position.set(z,y,100);
 	scene.add(sphere);
 	
 	refractSphereCamera.position = sphere.position;
@@ -227,23 +228,39 @@ function addGui( name, value, callback, isColor, min, max ) {
 	}
 	return node;
 }
+
+
 function animate() 
 {
     requestAnimationFrame( animate );
 	render();		
 	update();
 }
+
 function update()
 {
-	if ( keyboard.pressed("z") ) 
+	if ( keyboard.pressed("d") ) 
 	{ 
 	z=z+10;
-	sphere.position.set(z,50,100);
+	sphere.position.set(z,y,100);
 	}
-	
+	if(keyboard.pressed("a")) {
+	z=z-10;
+	sphere.position.set(z,y,100);
+	}
+	if ( keyboard.pressed("w") ) 
+	{ 
+	y=y+10;
+	sphere.position.set(z,y,100);
+	}
+	if(keyboard.pressed("s")) {
+	y=y-10;
+	sphere.position.set(z,y,100);
+	}
 	controls.update();
 	stats.update();
 }
+
 function render() 
 {
 	sphere.visible = false;
@@ -252,6 +269,7 @@ function render()
 	
 	renderer.render( scene, camera );
 }
+
 </script>
 
 </body>
