@@ -126,21 +126,30 @@ function update()
 {
 	if ( keyboard.pressed("d") ) 
 	{ 
-	z=z+30;
-	sphere.position.set(z,y,100);
+	z=z+10;
+	sphere.position.set(z,y,t);
 	}
 	if(keyboard.pressed("a")) {
-	z=z-30;
-	sphere.position.set(z,y,100);
+	z=z-10;
+	sphere.position.set(z,y,t);
 	}
-	if ( keyboard.pressed("w") ) 
+	if ( keyboard.pressed("e") ) 
 	{ 
-	y=y+30;
-	sphere.position.set(z,y,100);
+	y=y+10;
+	sphere.position.set(z,y,t);
 	}
-	if(keyboard.pressed("s")) {
-	y=y-30;
-	sphere.position.set(z,y,100);
+	if(keyboard.pressed("q")) {
+	y=y-10;
+	sphere.position.set(z,y,t);
+	}
+	if ( keyboard.pressed("s") ) 
+	{ 
+	t=t+10;
+	sphere.position.set(z,y,t);
+	}
+	if(keyboard.pressed("w")) {
+	t=t-10;
+	sphere.position.set(z,y,t);
 	}
 	controls.update();
 	stats.update();
