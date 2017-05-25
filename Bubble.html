@@ -74,16 +74,15 @@ function init()
 	stats.domElement.style.zIndex = 100;
 	container.appendChild( stats.domElement );
 	// LIGHT
-	var light = new THREE.PointLight(0xffffff);
-	light.position.set(0,250,0);
+	var light = new THREE.AmbientLight(0xffffff,1);
 	scene.add(light);
 	
 	// Room
-	var roomGeometry = new THREE.SphereGeometry( 5500, 50, 50 );
+	var roomGeometry = new THREE.SphereGeometry( 5500, 150, 150 );
 	var roomTexture = THREE.ImageUtils.loadTexture("images/room.jpg");
 	var roomMaterial = new THREE.MeshBasicMaterial({map: roomTexture , side: THREE.BackSide});
 	var room = new THREE.Mesh( roomGeometry, roomMaterial );
-	room.position.set(0,550,100);
+	room.position.set(-300,550,100);
 	scene.add(room);
 	// sphere camera
 	this.refractSphereCamera = new THREE.CubeCamera( 0.1, 8500, 512 );
