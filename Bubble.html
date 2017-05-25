@@ -30,9 +30,7 @@
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
-
 // MAIN
-
 // standard global variables
 var container, scene, camera, renderer, controls, stats;
 var keyboard = new THREEx.KeyboardState();
@@ -40,10 +38,9 @@ var clock = new THREE.Clock();
 // custom global variables
 var cube;
 var z=0;
-var y=300;
+var y=-300;
 init();
 animate();
-
 // FUNCTIONS 		
 function init() 
 {
@@ -54,7 +51,7 @@ function init()
 	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
-	camera.position.set(0,150,400);
+	camera.position.set(-300,150,2000);
 	camera.lookAt(scene.position);	
 	// RENDERER
 	if ( Detector.webgl )
@@ -81,8 +78,8 @@ function init()
 	scene.add(light);
 	
 	
-	// FLOOR
-	/*var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
+	/*// FLOOR
+	var floorTexture = new THREE.ImageUtils.loadTexture( 'images/checkerboard.jpg' );
 	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
 	floorTexture.repeat.set( 10, 10 );
 	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
@@ -92,8 +89,8 @@ function init()
 	floor.rotation.x = Math.PI / 2;
 	scene.add(floor);*/
 	// SKYBOX
-	var skyGeo = new THREE.SphereGeometry( 3000, 50, 50 );
-	var coin1_texture = THREE.ImageUtils.loadTexture("images/earth.jpg");
+	var skyGeo = new THREE.SphereGeometry( 5500, 50, 50 );
+	var coin1_texture = THREE.ImageUtils.loadTexture("images/room.jpg");
 	var mat = new THREE.MeshBasicMaterial({map:coin1_texture , side: THREE.BackSide});
 	var cylinder = new THREE.Mesh( skyGeo, mat );
 	cylinder.position.set(0,550,100);
@@ -103,9 +100,8 @@ function init()
 	// CUSTOM //
 	////////////
 	
-	this.refractSphereCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+	this.refractSphereCamera = new THREE.CubeCamera( 0.1, 8500, 512 );
 	scene.add( refractSphereCamera );
-
 	var fShader = THREE.FresnelShader;
 	
 	var fresnelUniforms = 
@@ -126,13 +122,8 @@ function init()
 	}   );
 	
 	
-	var geo = new THREE.CylinderGeometry( 50, 200 , 200 , 1000 );
-	var mat = new THREE.MeshBasicMaterial({color: 0x00000f});
-	var cylinder = new THREE.Mesh( geo, customMaterial );
-	cylinder.position.set(0,50,100);
-	scene.add(cylinder);
 	
-	var sphereGeometry = new THREE.SphereGeometry( 100, 64, 32 );
+	var sphereGeometry = new THREE.SphereGeometry( 400, 64, 32 );
 	this.sphere = new THREE.Mesh( sphereGeometry, customMaterial );
 	sphere.position.set(z,y,100);
 	scene.add(sphere);
@@ -140,40 +131,35 @@ function init()
 	refractSphereCamera.position = sphere.position;
 	
 }
-
-
-
 function animate() 
 {
     requestAnimationFrame( animate );
 	render();		
 	update();
 }
-
 function update()
 {
 	if ( keyboard.pressed("d") ) 
 	{ 
-	z=z+10;
+	z=z+30;
 	sphere.position.set(z,y,100);
 	}
 	if(keyboard.pressed("a")) {
-	z=z-10;
+	z=z-30;
 	sphere.position.set(z,y,100);
 	}
 	if ( keyboard.pressed("w") ) 
 	{ 
-	y=y+10;
+	y=y+30;
 	sphere.position.set(z,y,100);
 	}
 	if(keyboard.pressed("s")) {
-	y=y-10;
+	y=y-30;
 	sphere.position.set(z,y,100);
 	}
 	controls.update();
 	stats.update();
 }
-
 function render() 
 {
 	sphere.visible = false;
@@ -182,7 +168,6 @@ function render()
 	
 	renderer.render( scene, camera );
 }
-
 </script>
 
 </body>
